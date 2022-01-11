@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { reducers } from './store/reducer';
+import { reducers } from './store/reducers';
 
 @NgModule({
   declarations: [RegisterComponent],
