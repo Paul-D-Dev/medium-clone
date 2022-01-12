@@ -3,8 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAppState } from '../../../shared/types/app-state.interface';
+import { IBackendErrors } from '../../../shared/types/backend-errors.interface';
 import { registerAction } from '../../store/register.actions';
-import { isSubmittingSelector } from '../../store/selectors';
+import {
+  isSubmittingSelector,
+  validationErrorsSelector,
+} from '../../store/selectors';
 import { IRegisterRequest } from '../../types/register-request.interface';
 
 @Component({
@@ -15,6 +19,7 @@ import { IRegisterRequest } from '../../types/register-request.interface';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   isSubmitting$: Observable<boolean>;
+  backendErrors$: Observable<IBackendErrors | null>;
 
   constructor(private fb: FormBuilder, private store: Store<IAppState>) {}
 
@@ -34,6 +39,9 @@ export class RegisterComponent implements OnInit {
 
   initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    // Select in store the content of validationErrors and bind with observable backendErrors$
+    // If validationErrors value changes in store, backendErrors$ will catch the stream to update value
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
     console.log('isSubmitting$', this.isSubmitting$);
   }
 
