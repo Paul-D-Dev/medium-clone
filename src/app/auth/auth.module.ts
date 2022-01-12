@@ -4,7 +4,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { BackedErrorMessagesModule } from '../shared/modules/backendErrorMessages/backed-error-messages/backed-error-messages.module';
+import { BackendErrorMessagesModule } from '../shared/modules/backend-error-messages/backend-error-messages.module';
 import { PersistenceService } from '../shared/services/persistence.service';
 import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './components/register/register.component';
@@ -30,7 +30,7 @@ import * as fromAuthReducer from './store/reducers';
       LoginEffect,
       GetCurrentUserEffect,
     ]),
-    BackedErrorMessagesModule,
+    BackendErrorMessagesModule,
   ],
   providers: [AuthService, PersistenceService],
 })
