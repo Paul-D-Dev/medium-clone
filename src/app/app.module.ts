@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { RegisterEffect } from './auth/effects/register.effect';
+import { NavbarModule } from './shared/modules/navbar/navbar.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { RegisterEffect } from './auth/effects/register.effect';
     HttpClientModule,
     AuthModule,
     AppRoutingModule,
+    NavbarModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
