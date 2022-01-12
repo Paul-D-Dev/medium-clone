@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BackedErrorMessagesComponent } from './backed-error-messages.component';
+import { BackendErrorMessagesComponent } from './backend-error-messages.component';
 
 describe('BackedErrorMessagesComponent', () => {
-  let component: BackedErrorMessagesComponent;
-  let fixture: ComponentFixture<BackedErrorMessagesComponent>;
+  let component: BackendErrorMessagesComponent;
+  let fixture: ComponentFixture<BackendErrorMessagesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BackedErrorMessagesComponent ]
-    })
-    .compileComponents();
+      declarations: [BackendErrorMessagesComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BackedErrorMessagesComponent);
+    fixture = TestBed.createComponent(BackendErrorMessagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,10 +3,10 @@ import { IBackendErrors } from '../../../types/backend-errors.interface';
 
 @Component({
   selector: 'app-backed-error-messages',
-  templateUrl: './backed-error-messages.component.html',
-  styleUrls: ['./backed-error-messages.component.scss'],
+  templateUrl: './backend-error-messages.component.html',
+  styleUrls: ['./backend-error-messages.component.scss'],
 })
-export class BackedErrorMessagesComponent implements OnInit {
+export class BackendErrorMessagesComponent implements OnInit {
   // backendErrorsProps is an alias and backendErrors is what we used to feed input
   @Input('backendErrors') backendErrorsProps: IBackendErrors;
   errorMessages: string[];
