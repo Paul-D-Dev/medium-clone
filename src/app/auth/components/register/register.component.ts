@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAppState } from '../../../shared/types/app-state.interface';
 import { IBackendErrors } from '../../../shared/types/backend-errors.interface';
-import { registerAction } from '../../store/register.actions';
+import { registerAction } from '../../store/actions/register.actions';
 import {
   isSubmittingSelector,
   validationErrorsSelector,
@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit {
     // Select in store the content of validationErrors and bind with observable backendErrors$
     // If validationErrors value changes in store, backendErrors$ will catch the stream to update value
     this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
-    console.log('isSubmitting$', this.isSubmitting$);
   }
 
   onSubmit(): void {

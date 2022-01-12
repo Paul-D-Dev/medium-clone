@@ -2,15 +2,20 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 import { IAuthState } from '../types/auth-state.interface';
 import {
+  getCurrentUserAction,
+  getCurrentUserFailureAction,
+  getCurrentUserSuccessAction,
+} from './actions/get-current-user.actions';
+import {
   loginAction,
   loginFailureAction,
   loginSuccessAction,
-} from './login.actions';
+} from './actions/login.actions';
 import {
   registerAction,
   registerFailureAction,
   registerSuccessAction,
-} from './register.actions';
+} from './actions/register.actions';
 
 /*
  * This file, reducer reacts according to actions
@@ -21,6 +26,7 @@ const initialState: IAuthState = {
   currentUser: null,
   isLoggedIn: null,
   validationErrors: null,
+  isLoading: false,
 };
 
 const authReducer = createReducer(
@@ -40,7 +46,6 @@ const authReducer = createReducer(
       isSubmitting: false,
       isLoggedIn: true,
       currentUser: action.currentUser,
-      validationErrors: null,
     })
   ),
   on(
@@ -75,9 +80,36 @@ const authReducer = createReducer(
       isSubmitting: false,
       validationErrors: action.errors,
     })
+  ),
+  on(
+    getCurrentUserAction,
+    (state): IAuthState => ({
+      ...state,
+      isLoading: true,
+    })
+  ),
+  on(
+    getCurrentUserSuccessAction,
+    (state, action): IAuthState => ({
+      ...state,
+      isLoading: false,
+      isLoggedIn: true,
+      currentUser: action.currentUser,
+    })
+  ),
+  on(
+    getCurrentUserFailureAction,
+    (state): IAuthState => ({
+      ...state,
+      isLoading: false,
+      isLoggedIn: false,
+      currentUser: null,
+    })
   )
 );
 
 export function reducers(state: IAuthState, action: Action) {
   return authReducer(state, action);
 }
+
+export const authFeatureKey = 'auth';

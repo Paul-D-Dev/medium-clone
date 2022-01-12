@@ -8,11 +8,12 @@ import { BackedErrorMessagesModule } from '../shared/modules/backendErrorMessage
 import { PersistenceService } from '../shared/services/persistence.service';
 import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './components/register/register.component';
-import { LoginEffect } from './effects/login.effect';
-import { RegisterEffect } from './effects/register.effect';
+import { GetCurrentUserEffect } from './store/effects/get-current-user.effect';
+import { LoginEffect } from './store/effects/login.effect';
+import { RegisterEffect } from './store/effects/register.effect';
 import { AuthService } from './services/auth.service';
-import { reducers } from './store/reducers';
 import { LoginComponent } from './components/login/login.component';
+import * as fromAuthReducer from './store/reducers';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
@@ -20,8 +21,15 @@ import { LoginComponent } from './components/login/login.component';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([RegisterEffect, LoginEffect]),
+    StoreModule.forFeature(
+      fromAuthReducer.authFeatureKey,
+      fromAuthReducer.reducers
+    ),
+    EffectsModule.forFeature([
+      RegisterEffect,
+      LoginEffect,
+      GetCurrentUserEffect,
+    ]),
     BackedErrorMessagesModule,
   ],
   providers: [AuthService, PersistenceService],

@@ -9,7 +9,9 @@ import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { RegisterEffect } from './auth/effects/register.effect';
+import { GetCurrentUserEffect } from './auth/store/effects/get-current-user.effect';
+import { LoginEffect } from './auth/store/effects/login.effect';
+import { RegisterEffect } from './auth/store/effects/register.effect';
 import { NavbarModule } from './shared/modules/navbar/navbar.module';
 
 @NgModule({
@@ -25,7 +27,7 @@ import { NavbarModule } from './shared/modules/navbar/navbar.module';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([RegisterEffect]),
+    EffectsModule.forRoot([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { IBackendErrors } from '../../shared/types/backend-errors.interface';
-import { ICurrentUser } from '../../shared/types/current-user.interface';
-import { IRegisterRequest } from '../types/register-request.interface';
-import { AuthActionTypes } from './auth.action-types';
+import { IBackendErrors } from '../../../shared/types/backend-errors.interface';
+import { ICurrentUser } from '../../../shared/types/current-user.interface';
+import { IRegisterRequest } from '../../types/register-request.interface';
+import { AuthActionTypes } from '../auth.action-types';
 
 export const registerAction = createAction(
   AuthActionTypes.REGISTER,

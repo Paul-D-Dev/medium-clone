@@ -4,15 +4,14 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, of, tap } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-
-import { PersistenceService } from '../../shared/services/persistence.service';
-import { ICurrentUser } from '../../shared/types/current-user.interface';
-import { AuthService } from '../services/auth.service';
+import { PersistenceService } from '../../../shared/services/persistence.service';
+import { ICurrentUser } from '../../../shared/types/current-user.interface';
+import { AuthService } from '../../services/auth.service';
 import {
-  loginAction,
-  loginFailureAction,
-  loginSuccessAction,
-} from '../store/login.actions';
+  registerAction,
+  registerFailureAction,
+  registerSuccessAction,
+} from '../actions/register.actions';
 
 /*
  * Aim of Effect is to decrease responsibilities of register component
@@ -20,22 +19,22 @@ import {
  * */
 
 @Injectable()
-export class LoginEffect {
-  login$ = createEffect(() =>
+export class RegisterEffect {
+  register$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(loginAction),
+      ofType(registerAction),
       switchMap(({ request }) => {
-        return this.authService.login(request).pipe(
+        return this.authService.register(request).pipe(
           // When successful
           map((currentUser: ICurrentUser) => {
             this.persistenceService.set('accessToken', currentUser.token);
-            return loginSuccessAction({ currentUser });
+            return registerSuccessAction({ currentUser });
           }),
 
           // When error from API
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
-              loginFailureAction({ errors: errorResponse.error.errors })
+              registerFailureAction({ errors: errorResponse.error.errors })
             );
           })
         );
@@ -47,7 +46,7 @@ export class LoginEffect {
     () =>
       // If action of type registerSuccessAction is detected it's called
       this.actions$.pipe(
-        ofType(loginSuccessAction),
+        ofType(registerSuccessAction),
         tap(() => {
           // tap do not need to return something just doing something
           this.router.navigateByUrl('/');
