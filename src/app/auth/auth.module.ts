@@ -12,9 +12,10 @@ import { LoginEffect } from './effects/login.effect';
 import { RegisterEffect } from './effects/register.effect';
 import { AuthService } from './services/auth.service';
 import { reducers } from './store/reducers';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [RegisterComponent, LoginComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
