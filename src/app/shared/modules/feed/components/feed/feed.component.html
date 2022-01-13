@@ -24,9 +24,10 @@
       Here list of tags
     </a>
   </div>
-  PAGINATION
+  <app-pagination
+    [total]="(feed$ | async)?.articlesCount"
+    [limit]="limit"
+    [url]="baseUrl"
+    [currentPage]="currentPage">
+  </app-pagination>
 </ng-container>
-
-
-
-
