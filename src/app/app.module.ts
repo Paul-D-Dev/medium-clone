@@ -14,6 +14,7 @@ import { LoginEffect } from './auth/store/effects/login.effect';
 import { RegisterEffect } from './auth/store/effects/register.effect';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { GlobalFeedModule } from './globalFeed/global-feed.module';
+import { GetFeedEffect } from './shared/modules/feed/store/effects/getFeed.effect';
 import { NavbarModule } from './shared/modules/navbar/navbar.module';
 import { PersistenceService } from './shared/services/persistence.service';
 
@@ -30,7 +31,12 @@ import { PersistenceService } from './shared/services/persistence.service';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
+    EffectsModule.forRoot([
+      RegisterEffect,
+      LoginEffect,
+      GetCurrentUserEffect,
+      GetFeedEffect,
+    ]),
     GlobalFeedModule,
   ],
   providers: [
