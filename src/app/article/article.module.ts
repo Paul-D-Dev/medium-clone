@@ -4,6 +4,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ErrorMessageModule } from '../shared/modules/error-message/error-message.module';
 import { LoadingModule } from '../shared/modules/loading/loading.module';
+import { TagListModule } from '../shared/modules/tag-list/tag-list.module';
 import { ArticleRoutingModule } from './article-routing-module';
 import { ArticleComponent } from './components/article/article.component';
 import { ArticleService } from '../shared/services/article.service';
@@ -22,6 +23,7 @@ import * as FromArticleReducer from './store/reducers';
     EffectsModule.forFeature([GetArticleEffect]),
     LoadingModule,
     ErrorMessageModule,
+    TagListModule,
   ],
   providers: [ArticleService],
 })
