@@ -18,6 +18,7 @@ import { GlobalFeedModule } from './globalFeed/global-feed.module';
 import { GetFeedEffect } from './shared/modules/feed/store/effects/getFeed.effect';
 import { NavbarModule } from './shared/modules/navbar/navbar.module';
 import { PersistenceService } from './shared/services/persistence.service';
+import { TagFeedModule } from './tag-feed/tag-feed.module';
 import { YourFeedModule } from './your-feed/your-feed.module';
 
 @NgModule({
@@ -42,6 +43,7 @@ import { YourFeedModule } from './your-feed/your-feed.module';
     ]),
     GlobalFeedModule,
     YourFeedModule,
+    TagFeedModule,
   ],
   providers: [
     PersistenceService,

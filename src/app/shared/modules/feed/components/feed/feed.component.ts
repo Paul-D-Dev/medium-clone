@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -18,7 +25,7 @@ import { IGetFeedResponse } from '../../types/get-feed-response.interface';
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
   @Input('apiUrl') apiUrlProps: string;
   feed$: Observable<IGetFeedResponse | null>;
   error$: Observable<string | null>;
@@ -26,7 +33,7 @@ export class FeedComponent implements OnInit, OnDestroy {
   limit = environment.limit;
   baseUrl: string;
   currentPage: number;
-  queryParasSubscription: Subscription;
+  queryParamsSubscription: Subscription;
 
   constructor(
     private store: Store,
@@ -39,12 +46,19 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.initializeListeners();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    // TAG FEED : re-render tag feed when we click on other tag
+    if (changes['apiUrlProps']) {
+      this.fetchFeed();
+    }
+  }
+
   ngOnDestroy() {
-    this.queryParasSubscription.unsubscribe();
+    this.queryParamsSubscription.unsubscribe();
   }
 
   initializeListeners(): void {
-    this.queryParasSubscription = this.route.queryParams.subscribe(
+    this.queryParamsSubscription = this.route.queryParams.subscribe(
       (params: Params) => {
         this.currentPage = Number(params['page'] || '1');
         this.fetchFeed();
@@ -62,7 +76,6 @@ export class FeedComponent implements OnInit, OnDestroy {
   fetchFeed(): void {
     const offset = this.currentPage * this.limit - this.limit;
     const parsedUrl = parseUrl(this.apiUrlProps);
-    console.log(parsedUrl);
     const stringifiedUrl = stringify({
       limit: this.limit,
       offset,
