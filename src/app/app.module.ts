@@ -9,6 +9,8 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ArticleModule } from './article/article.module';
+import { GetArticleEffect } from './article/store/effects/get-article.effect';
 import { AuthModule } from './auth/auth.module';
 import { GetCurrentUserEffect } from './auth/store/effects/get-current-user.effect';
 import { LoginEffect } from './auth/store/effects/login.effect';
@@ -40,10 +42,12 @@ import { YourFeedModule } from './your-feed/your-feed.module';
       LoginEffect,
       GetCurrentUserEffect,
       GetFeedEffect,
+      GetArticleEffect,
     ]),
     GlobalFeedModule,
     YourFeedModule,
     TagFeedModule,
+    ArticleModule,
   ],
   providers: [
     PersistenceService,
