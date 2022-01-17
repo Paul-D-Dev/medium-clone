@@ -17,6 +17,7 @@ import { GetCurrentUserEffect } from './auth/store/effects/get-current-user.effe
 import { LoginEffect } from './auth/store/effects/login.effect';
 import { RegisterEffect } from './auth/store/effects/register.effect';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { CreateArticleModule } from './create-article/create-article.module';
 import { GlobalFeedModule } from './globalFeed/global-feed.module';
 import { GetFeedEffect } from './shared/modules/feed/store/effects/getFeed.effect';
 import { NavbarModule } from './shared/modules/navbar/navbar.module';
@@ -49,6 +50,7 @@ import { YourFeedModule } from './your-feed/your-feed.module';
     GlobalFeedModule,
     YourFeedModule,
     TagFeedModule,
+    CreateArticleModule,
     ArticleModule,
   ],
   providers: [
