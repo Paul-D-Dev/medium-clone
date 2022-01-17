@@ -1,3 +1,4 @@
+import { routerNavigationAction } from '@ngrx/router-store';
 import { Action, createReducer, on } from '@ngrx/store';
 import {
   updateArticleAction,
@@ -63,7 +64,8 @@ const editArticleReducer = createReducer(
       ...state,
       isLoading: false,
     })
-  )
+  ),
+  on(routerNavigationAction, () => initialState)
 );
 
 export function reducers(state: IEditArticleState, action: Action) {
