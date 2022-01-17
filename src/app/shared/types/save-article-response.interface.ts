@@ -1,5 +1,5 @@
-import { IArticleInput } from './article-input.interface';
+import { IArticle } from './article.interface';
 
 export interface ISaveArticleResponse {
-  article: IArticleInput;
+  article: IArticle;
 }

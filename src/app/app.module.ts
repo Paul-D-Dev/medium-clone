@@ -19,6 +19,8 @@ import { RegisterEffect } from './auth/store/effects/register.effect';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { CreateArticleModule } from './create-article/create-article.module';
 import { CreateArticleEffect } from './create-article/store/effects/create-article.effect';
+import { EditArticleModule } from './edit-article/edit-article.module';
+import { EditArticleEffect } from './edit-article/store/effetcs/edit-article.effect';
 import { GlobalFeedModule } from './globalFeed/global-feed.module';
 import { GetFeedEffect } from './shared/modules/feed/store/effects/getFeed.effect';
 import { NavbarModule } from './shared/modules/navbar/navbar.module';
@@ -48,12 +50,14 @@ import { YourFeedModule } from './your-feed/your-feed.module';
       GetArticleEffect,
       DeleteArticleEffect,
       CreateArticleEffect,
+      EditArticleEffect,
     ]),
     GlobalFeedModule,
     YourFeedModule,
     TagFeedModule,
     CreateArticleModule,
     ArticleModule,
+    EditArticleModule,
   ],
   providers: [
     PersistenceService,
