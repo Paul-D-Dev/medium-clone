@@ -1,5 +1,6 @@
 <app-article-form
   [initializeValues]="initializeValues"
-  [isSubmitting]="false"
+  [isSubmitting]="isSubmitting$ | async"
   (articleSubmit)="onSubmit($event)"
+  [error]="backEndErrors$ | async"
 ></app-article-form>

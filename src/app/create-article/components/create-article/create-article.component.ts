@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { IArticleInput } from '../../../shared/types/article-input.interface';
+import { IBackendErrors } from '../../../shared/types/backend-errors.interface';
+import { createArticleAction } from '../../store/actions/create-article-action';
+import {
+  isSubmittingSelector,
+  validationErrorsSelector,
+} from '../../store/selectors';
 
 @Component({
   selector: 'app-create-article',
@@ -13,11 +21,16 @@ export class CreateArticleComponent implements OnInit {
     body: '',
     tagList: [],
   };
-  constructor() {}
+  isSubmitting$: Observable<boolean>;
+  backEndErrors$: Observable<IBackendErrors | null>;
+  constructor(private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    this.backEndErrors$ = this.store.pipe(select(validationErrorsSelector));
+  }
 
-  onSubmit(ev: any): void {
-    console.log('ev', ev);
+  onSubmit(articleInput: IArticleInput): void {
+    this.store.dispatch(createArticleAction({ articleInput }));
   }
 }
