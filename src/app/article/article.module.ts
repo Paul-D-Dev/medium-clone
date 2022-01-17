@@ -7,7 +7,9 @@ import { LoadingModule } from '../shared/modules/loading/loading.module';
 import { TagListModule } from '../shared/modules/tag-list/tag-list.module';
 import { ArticleRoutingModule } from './article-routing-module';
 import { ArticleComponent } from './components/article/article.component';
-import { ArticleService } from '../shared/services/article.service';
+import { ArticleService as SharedArticleService } from '../shared/services/article.service';
+import { ArticleService } from './services/article.service';
+import { DeleteArticleEffect } from './store/effects/delete-article.effect';
 import { GetArticleEffect } from './store/effects/get-article.effect';
 import * as FromArticleReducer from './store/reducers';
 
@@ -20,11 +22,11 @@ import * as FromArticleReducer from './store/reducers';
       FromArticleReducer.articleFeatureKey,
       FromArticleReducer.reducers
     ),
-    EffectsModule.forFeature([GetArticleEffect]),
+    EffectsModule.forFeature([GetArticleEffect, DeleteArticleEffect]),
     LoadingModule,
     ErrorMessageModule,
     TagListModule,
   ],
-  providers: [ArticleService],
+  providers: [SharedArticleService, ArticleService],
 })
 export class ArticleModule {}

@@ -5,6 +5,7 @@ import { combineLatest, map, Observable, Subscription } from 'rxjs';
 import { currentUserSelector } from '../../../auth/store/selectors';
 import { IArticle } from '../../../shared/types/article.interface';
 import { ICurrentUser } from '../../../shared/types/current-user.interface';
+import { deleteArticleAction } from '../../store/actions/delete-article.action';
 import { getArticleAction } from '../../store/actions/get-article-action';
 import {
   articleSelector,
@@ -47,6 +48,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     ).pipe(
       map(([article, currentUser]: [IArticle | null, ICurrentUser | null]) => {
         if (!article || !currentUser) return false;
+        console.log('author', currentUser.username === article.author.username);
         return currentUser.username === article.author.username;
       })
     );
@@ -62,5 +64,9 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   fetchData(): void {
     this.store.dispatch(getArticleAction({ slug: this.slug }));
+  }
+
+  deleteArticle(): void {
+    this.store.dispatch(deleteArticleAction({ slug: this.slug }));
   }
 }
