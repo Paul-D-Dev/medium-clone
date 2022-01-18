@@ -30,6 +30,7 @@ import { GetFeedEffect } from './shared/modules/feed/store/effects/getFeed.effec
 import { NavbarModule } from './shared/modules/navbar/navbar.module';
 import { PersistenceService } from './shared/services/persistence.service';
 import { TagFeedModule } from './tag-feed/tag-feed.module';
+import { UserProfileModule } from './user-profile/user-profile.module';
 import { YourFeedModule } from './your-feed/your-feed.module';
 
 @NgModule({
@@ -66,6 +67,7 @@ import { YourFeedModule } from './your-feed/your-feed.module';
     ArticleModule,
     EditArticleModule,
     SettingsModule,
+    UserProfileModule,
   ],
   providers: [
     PersistenceService,
