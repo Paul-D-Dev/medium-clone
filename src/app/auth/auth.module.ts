@@ -10,6 +10,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './components/register/register.component';
 import { GetCurrentUserEffect } from './store/effects/get-current-user.effect';
 import { LoginEffect } from './store/effects/login.effect';
+import { LogoutEffect } from './store/effects/logout.effect';
 import { RegisterEffect } from './store/effects/register.effect';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
@@ -31,6 +32,7 @@ import * as fromAuthReducer from './store/reducers';
       LoginEffect,
       GetCurrentUserEffect,
       UpdateCurrentUserEffect,
+      LogoutEffect,
     ]),
     BackendErrorMessagesModule,
   ],

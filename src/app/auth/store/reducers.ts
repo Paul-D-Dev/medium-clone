@@ -16,6 +16,7 @@ import {
   registerFailureAction,
   registerSuccessAction,
 } from './actions/register.actions';
+import { logoutAction } from './actions/sync.action';
 import { updateCurrentUserSuccessAction } from './actions/update-current-user.action';
 
 /*
@@ -112,6 +113,14 @@ const authReducer = createReducer(
     (state, action): IAuthState => ({
       ...state,
       currentUser: action.currentUser,
+    })
+  ),
+  on(
+    logoutAction,
+    (state): IAuthState => ({
+      ...state,
+      ...initialState,
+      isLoggedIn: false,
     })
   )
 );

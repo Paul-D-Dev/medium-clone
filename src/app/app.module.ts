@@ -15,6 +15,7 @@ import { GetArticleEffect } from './article/store/effects/get-article.effect';
 import { AuthModule } from './auth/auth.module';
 import { GetCurrentUserEffect } from './auth/store/effects/get-current-user.effect';
 import { LoginEffect } from './auth/store/effects/login.effect';
+import { LogoutEffect } from './auth/store/effects/logout.effect';
 import { RegisterEffect } from './auth/store/effects/register.effect';
 import { UpdateCurrentUserEffect } from './auth/store/effects/update-current-user.effect';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
@@ -54,6 +55,7 @@ import { YourFeedModule } from './your-feed/your-feed.module';
       CreateArticleEffect,
       EditArticleEffect,
       UpdateCurrentUserEffect,
+      LogoutEffect,
     ]),
     GlobalFeedModule,
     YourFeedModule,

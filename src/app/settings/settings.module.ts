@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { ErrorMessageModule } from '../shared/modules/error-message/error-message.module';
-import { LoadingModule } from '../shared/modules/loading/loading.module';
+import { BackendErrorMessagesModule } from '../shared/modules/backend-error-messages/backend-error-messages.module';
+import { SettingsComponent } from './components/settings/settings.component';
 
 import { SettingsRoutingModule } from './settings-routing.module';
-import { SettingsComponent } from './components/settings/settings.component';
 import * as FromSettingsReducer from './store/reducers';
 
 @NgModule({
@@ -17,8 +17,8 @@ import * as FromSettingsReducer from './store/reducers';
       FromSettingsReducer.settingsFeatureKey,
       FromSettingsReducer.reducers
     ),
-    LoadingModule,
-    ErrorMessageModule,
+    ReactiveFormsModule,
+    BackendErrorMessagesModule,
   ],
 })
 export class SettingsModule {}

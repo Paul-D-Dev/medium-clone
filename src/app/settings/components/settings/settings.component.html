@@ -1,4 +1,80 @@
-<app-loading *ngIf="isLoading$ | async"></app-loading>
-<app-error-message *ngIf="backEndErrors$| async"></app-error-message>
 
+<div class="setting-page" *ngIf="currentUser">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Settings</h1>
+          <app-backed-error-messages *ngIf="backEndErrors$| async" [backendErrors]="backEndErrors$ | async" ></app-backed-error-messages>
 
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <fieldset>
+              <fieldset class="form-group">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="image"
+                  id="image"
+                  formControlName="image"
+                  placeholder="URL of profile picture"/>
+              </fieldset>
+
+              <fieldset class="form-group">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="username"
+                  id="username"
+                  formControlName="username"
+                  placeholder="Username"/>
+              </fieldset>
+
+              <fieldset class="form-group">
+                <textarea
+                  class="form-control"
+                  name="bio"
+                  id="bio"
+                  formControlName="bio"
+                  placeholder="Short bio about you">
+                </textarea>
+              </fieldset>
+
+              <fieldset class="form-group">
+                <input
+                  class="form-control"
+                  type="email"
+                  name="email"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Email"/>
+              </fieldset>
+
+              <fieldset class="form-group">
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  id="password"
+                  formControlName="password"
+                  placeholder="New password"/>
+              </fieldset>
+
+              <button
+                type="submit"
+                class="btn btn-lg btn-primary pull-xs-right"
+                [disabled]="isSubmitting$ | async">
+
+                Update Settings
+              </button>
+            </fieldset>
+          </form>
+        <hr/>
+        <button
+          class="btn btn-outline-danger"
+          (click)="logOut()"
+          type="button">
+          Or click here to logout.
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

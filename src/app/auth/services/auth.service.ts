@@ -32,6 +32,8 @@ export class AuthService {
 
   updateCurrentUser(data: ICurrentUserInput): Observable<ICurrentUser> {
     const url = environment.apiUrl + '/user';
-    return this.http.put(url, data).pipe(map(this.getUser));
+    return this.http
+      .put<IAuthResponse>(url, { user: data })
+      .pipe(map(this.getUser));
   }
 }
