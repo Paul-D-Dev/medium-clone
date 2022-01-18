@@ -16,6 +16,7 @@ import {
   registerFailureAction,
   registerSuccessAction,
 } from './actions/register.actions';
+import { updateCurrentUserSuccessAction } from './actions/update-current-user.action';
 
 /*
  * This file, reducer reacts according to actions
@@ -104,6 +105,13 @@ const authReducer = createReducer(
       isLoading: false,
       isLoggedIn: false,
       currentUser: null,
+    })
+  ),
+  on(
+    updateCurrentUserSuccessAction,
+    (state, action): IAuthState => ({
+      ...state,
+      currentUser: action.currentUser,
     })
   )
 );

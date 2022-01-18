@@ -13,6 +13,7 @@ import { LoginEffect } from './store/effects/login.effect';
 import { RegisterEffect } from './store/effects/register.effect';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
+import { UpdateCurrentUserEffect } from './store/effects/update-current-user.effect';
 import * as fromAuthReducer from './store/reducers';
 
 @NgModule({
@@ -29,6 +30,7 @@ import * as fromAuthReducer from './store/reducers';
       RegisterEffect,
       LoginEffect,
       GetCurrentUserEffect,
+      UpdateCurrentUserEffect,
     ]),
     BackendErrorMessagesModule,
   ],

@@ -10,4 +10,8 @@ export enum AuthActionTypes {
   GET_CURRENT_USER = '[Auth] Get current user',
   GET_CURRENT_USER_SUCCESS = '[Auth] Get current user Success',
   GET_CURRENT_USER_FAILURE = '[Auth] Get current user Failure',
+
+  UPDATE_CURRENT_USER = '[Auth] UPDATE current user',
+  UPDATE_CURRENT_USER_SUCCESS = '[Auth] UPDATE current user Success',
+  UPDATE_CURRENT_USER_FAILURE = '[Auth] UPDATE current user Failure',
 }

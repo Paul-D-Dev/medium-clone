@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { ICurrentUserInput } from '../../shared/types/current-user-input.interface';
 import { ICurrentUser } from '../../shared/types/current-user.interface';
 import { IAuthResponse } from '../types/auth-response.interface';
 import { ILoginRequest } from '../types/login-request.interface';
@@ -27,5 +28,10 @@ export class AuthService {
   getCurrentUser(): Observable<ICurrentUser> {
     const url = environment.apiUrl + '/user';
     return this.http.get<IAuthResponse>(url).pipe(map(this.getUser));
+  }
+
+  updateCurrentUser(data: ICurrentUserInput): Observable<ICurrentUser> {
+    const url = environment.apiUrl + '/user';
+    return this.http.put(url, data).pipe(map(this.getUser));
   }
 }
