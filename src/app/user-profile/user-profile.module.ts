@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { FeedModule } from '../shared/modules/feed/feed.module';
 import { UserProfileService } from './services/user-profile.service';
 import { GetUserProfileEffect } from './store/effects/get-user-profile.effect';
 
@@ -19,6 +20,7 @@ import * as FromUserProfileReducer from './store/reducers';
       FromUserProfileReducer.userProfileFeatureKey,
       FromUserProfileReducer.reducers
     ),
+    FeedModule,
   ],
   providers: [UserProfileService],
 })

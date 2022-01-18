@@ -1,1 +1,46 @@
-<p>user-profile works!</p>
+<div class="profile-page">
+  <div class="user-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1">
+          <img [src]="userProfile.image" alt="Image user" class="user-img"/>
+          <h4>{{userProfile.bio}}</h4>
+          <div>
+            FOLLOW USER BTN
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-10 offset-md-1">
+        <div class="article-toggle">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="['/profile', userProfile.username]"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                MY POSTS
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="['/profile', userProfile.username, 'favorites']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                MY FAVORITES POSTS
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <app-feed [apiUrl]="apiUrl"></app-feed>
+      </div>
+    </div>
+  </div>
+</div>
