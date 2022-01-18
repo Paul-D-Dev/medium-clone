@@ -16,12 +16,14 @@ import { AuthModule } from './auth/auth.module';
 import { GetCurrentUserEffect } from './auth/store/effects/get-current-user.effect';
 import { LoginEffect } from './auth/store/effects/login.effect';
 import { RegisterEffect } from './auth/store/effects/register.effect';
+import { UpdateCurrentUserEffect } from './auth/store/effects/update-current-user.effect';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { CreateArticleModule } from './create-article/create-article.module';
 import { CreateArticleEffect } from './create-article/store/effects/create-article.effect';
 import { EditArticleModule } from './edit-article/edit-article.module';
 import { EditArticleEffect } from './edit-article/store/effetcs/edit-article.effect';
 import { GlobalFeedModule } from './globalFeed/global-feed.module';
+import { SettingsModule } from './settings/settings.module';
 import { GetFeedEffect } from './shared/modules/feed/store/effects/getFeed.effect';
 import { NavbarModule } from './shared/modules/navbar/navbar.module';
 import { PersistenceService } from './shared/services/persistence.service';
@@ -51,6 +53,7 @@ import { YourFeedModule } from './your-feed/your-feed.module';
       DeleteArticleEffect,
       CreateArticleEffect,
       EditArticleEffect,
+      UpdateCurrentUserEffect,
     ]),
     GlobalFeedModule,
     YourFeedModule,
@@ -58,6 +61,7 @@ import { YourFeedModule } from './your-feed/your-feed.module';
     CreateArticleModule,
     ArticleModule,
     EditArticleModule,
+    SettingsModule,
   ],
   providers: [
     PersistenceService,
