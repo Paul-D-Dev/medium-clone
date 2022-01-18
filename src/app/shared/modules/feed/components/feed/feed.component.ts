@@ -48,9 +48,10 @@ export class FeedComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     // TAG FEED : re-render tag feed when we click on other tag
-    if (changes['apiUrlProps']) {
-      this.fetchFeed();
-    }
+    const c = changes['apiUrlProps'];
+    const isApiUrlChanged =
+      !c.firstChange && c.previousValue !== c.currentValue;
+    if (isApiUrlChanged) this.fetchFeed();
   }
 
   ngOnDestroy() {
