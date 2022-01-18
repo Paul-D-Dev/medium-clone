@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, filter, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -36,19 +36,17 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initializeValues();
     this.initializeListener();
-    this.fetchData();
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.userProfileSubscription.unsubscribe();
+  }
 
   initializeValues(): void {
-    const isFavorite = this.router.url.includes('favorites');
     this.username = this.route.snapshot.paramMap.get('username');
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.error$ = this.store.pipe(select(errorSelector));
-    this.apiUrl = isFavorite
-      ? `/articles?favorited=${this.username}`
-      : `/articles?author=${this.username}`;
+
     this.isCurrentUserProfile$ = combineLatest(
       this.store.pipe(select(currentUserSelector), filter(Boolean)),
       this.store.pipe(select(userProfileSelector), filter(Boolean))
@@ -65,8 +63,21 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       .subscribe((userProfile: IUserProfile) => {
         this.userProfile = userProfile;
       });
+
+    this.route.params.subscribe((params: Params) => {
+      this.username = params['username'];
+      this.fetchUserProfile();
+    });
   }
-  fetchData(): void {
+  fetchUserProfile(): void {
     this.store.dispatch(getUserProfileAction({ username: this.username }));
+  }
+
+  getApiUrl(): string {
+    const isFavorite = this.router.url.includes('favorites');
+
+    return isFavorite
+      ? `/articles?favorited=${this.username}`
+      : `/articles?author=${this.username}`;
   }
 }

@@ -3,10 +3,18 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-10 offset-md-1">
-          <img [src]="userProfile.image" alt="Image user" class="user-img"/>
-          <h4>{{userProfile.bio}}</h4>
+          <img
+            [src]="userProfile?.image"
+            alt="Image user"
+            class="user-img"/>
+          <h4>{{userProfile?.bio}}</h4>
           <div>
-            FOLLOW USER BTN
+            <a
+              *ngIf="isCurrentUserProfile$ | async"
+              class="btn btn-sm btn-outline-secondary action-btn"
+              [routerLink]="['/settings']">
+              <i class="ion-gear-a"></i>
+              Edit Profile Settings</a>
           </div>
         </div>
       </div>
@@ -21,7 +29,7 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                [routerLink]="['/profile', userProfile.username]"
+                [routerLink]="['/profile', userProfile?.username]"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
                 MY POSTS
@@ -30,7 +38,7 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                [routerLink]="['/profile', userProfile.username, 'favorites']"
+                [routerLink]="['/profile', userProfile?.username, 'favorites']"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
                 MY FAVORITES POSTS
@@ -39,7 +47,7 @@
           </ul>
         </div>
 
-        <app-feed [apiUrl]="apiUrl"></app-feed>
+        <app-feed [apiUrl]="getApiUrl()"></app-feed>
       </div>
     </div>
   </div>
