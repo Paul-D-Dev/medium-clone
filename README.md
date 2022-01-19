@@ -1,27 +1,31 @@
 # Mediumclone
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+## Context
 
-## Development server
+In order to improve my skills in Angular. I followed a MOOC to learn NGRX. During this training, I developed from scratch a copy of the site https://angular.realworld.io/. This is a blog where we find the general feed, our feed, a connection and registration space, a profile page, the creation of new articles and updates.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Tasks done
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- use of the ANGULAR CLI (generate project, components, services, modules, routing, interfaces)
+- implementation of NGRX (store, actions, effects, reducers, selectors)
+- Call store in components to retrieve states and dispatch actions
+- API calls
+- Reusable and stateless components
+- Http Interceptor
+- RXJS Operators (switchMap, of, catchError, tap, combineLatest, filter, Observable, Subscription)
+- Router module
+- Reactive forms
+- OnInit, OnDestroy, OnChange
+- LocalStorage
 
-## Build
+## Stacks
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Angular 13
+- Typescript
+- NGRX
+- Git Hub
 
-## Running unit tests
+## Certificate
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[Link to certificate](https://www.udemy.com/certificate/UC-54bedbe2-cdb0-4df3-be8f-911a0b28239a/)
